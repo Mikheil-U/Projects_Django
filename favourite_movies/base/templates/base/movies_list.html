@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+ {% block content %}
+<br>
+    {% if user.is_authenticated %}
+        <div class="container">
+        <table class="tableFixHead table table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Release Year</th>
+                  <th scope="col">Gener</th>
+                  <th scope="col">Director</th>
+                  <th scope="col">IMDB</th>
+                  <th scope="col">Added on</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for movie in movies %}
+
+                <tr>
+                  <th scope="row">{{movie.title|truncatechars:20}}</th>
+                  <td>{{movie.release_year}}</td>
+                  <td>{{movie.genre|truncatechars:15}}</td>
+                  <td>{{movie.director}}</td>
+                  <td>{{movie.imdb_rating}}</td>
+                  <td>{{movie.created_at}}</td>
+                  <td>
+                      <a href="{% url 'detail-movie' movie.id %}"><button type="button" class="btn btn-secondary btn-sm">Details</button></a>
+                  </td>
+                  <td>
+                      <a href="{% url 'delete-movie' movie.id %}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+                  </td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'add-movie' %}"><button type="button" class="btn btn-success">Add New</button></a>
+            </div>
+
+        </div>
+    {% else %}
+        <p>Login</p>
+    {% endif %}
+
+{% endblock %}
