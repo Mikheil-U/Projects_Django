@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from blog_project.users import views as user_views  NOT WORKING RESEARCH THIS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
+    # path('register', user_views.register, name='register'),
+    path('', include('users.urls')),
 ]
