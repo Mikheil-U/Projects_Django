@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth import logout
 
 
 def register(request):
@@ -16,6 +17,11 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
 
 @login_required()
