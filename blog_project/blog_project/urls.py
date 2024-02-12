@@ -28,5 +28,6 @@ urlpatterns = [
                                                 redirect_authenticated_user=True), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html',
                                                   next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
+
     path('', include('users.urls')),
 ]
