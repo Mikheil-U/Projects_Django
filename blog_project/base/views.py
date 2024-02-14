@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
     DetailView,
@@ -33,13 +33,22 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, CreateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    # UserPassesTestMixin -> Only the authors of the post can update their post
     model = Post
     fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        # Only the authors of the post can update their post
+        post = self.get_object()  # get the post we are currently trying to update
+        if self.request.user == post.author:  # make sure the current user is the author of the post
+            return True
+        return False
+
 
 
 
