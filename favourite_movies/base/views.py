@@ -84,7 +84,8 @@ class MovieDelete(LoginRequiredMixin, DeleteView):
 
 class UpdateMovie(UpdateView):
     model = Movie
-
+    fields = ['title', 'release_year', 'genre', 'director', 'imdb_rating']
+    success_url = reverse_lazy('movies-list')
 
 
 
