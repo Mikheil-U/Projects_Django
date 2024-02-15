@@ -19,6 +19,7 @@ class PostListView(ListView):
     template_name = 'base/home.html'
     context_object_name = 'posts'  # same as {'posts': Post.objects.all()}
     ordering = ['-date_posted']
+    paginate_by = 2
 
 
 class PostDetailView(DetailView):
@@ -61,7 +62,6 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:  # make sure the current user is the author of the post
             return True
         return False
-
 
 
 def about(request):
