@@ -18,6 +18,8 @@ from . import settings
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from django.conf.urls.static import static
+
 # from blog_project.users import views as user_views  # ** NOT WORKING RESEARCH THIS **
 
 urlpatterns = [
@@ -28,6 +30,11 @@ urlpatterns = [
                                                 redirect_authenticated_user=True), name='login'),
     # path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html',
     #                                               next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
+    path('password-reset/done', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html',
+                                                                 ), name='password_reset_done'),
 
     path('', include('users.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
