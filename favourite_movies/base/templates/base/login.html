@@ -132,12 +132,32 @@
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
              <h3>Login Here</h3>
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
 
               <div class="mb-3">
+                  {% for error in form.username.errors %}
+                    <div class="alert alert-danger" role="alert">{{ error }}</div>
+                  {% endfor %}
                 <input type="text" class="form-control"  name="username" placeholder="username" required>
               </div>
               <div class="mb-3">
                 <input type="password" class="form-control" name="password" placeholder="password" required>
+                  {% for error in form.password.errors %}
+                    <div class="alert alert-danger" role="alert">{{ error }}</div>
+                  {% endfor %}
               </div>
                 <br>
               <button type="submit" class="btn btn-secondary">Login</button>
