@@ -8,7 +8,7 @@ class Movie(models.Model):
     release_year = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
-    imdb_rating = models.CharField(max_length=10, blank=True, default='0.0')
+    imdb_rating = models.FloatField(null=True, default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
