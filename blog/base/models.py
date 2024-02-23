@@ -19,9 +19,24 @@ class Post(models.Model):
         self.save()
 
     def approve_comments(self):
-        return self.comments.filter(approed_comments=True)
+        return self.comments.filter(approed_comment=True)
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=50)
+    text = models.TextField()
+    create_date = models.DateTimeField(default=timezone.now)
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.author
 
 
