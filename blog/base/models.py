@@ -21,6 +21,10 @@ class Post(models.Model):
     def approve_comments(self):
         return self.comments.filter(approed_comment=True)
 
+    def get_absolute_url(self):
+        """ To redirect the user at the  post they've created(or comment)"""
+        return reverse('post-detail', kwargs={'pk': self.pk})  # pk -> primary key of the post user has created
+
     def __str__(self):
         return self.title
 
@@ -35,6 +39,10 @@ class Comment(models.Model):
     def approve(self):
         self.approved_comment = True
         self.save()
+
+    def get_absolute_url(self):
+        """ To redirect the user at posts main page after they have commented on the post."""
+        return reverse('post_list')
 
     def __str__(self):
         return self.author
