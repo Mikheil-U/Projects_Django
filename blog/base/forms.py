@@ -5,7 +5,7 @@ from . models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('author', 'title', 'text')  # These will be available on our form
+        fields = ('author', 'title', 'text')
 
         widgets = {  # So we can style using CSS
             # editable medium-editor-textarea these classes are not ours, we'll be using ...
