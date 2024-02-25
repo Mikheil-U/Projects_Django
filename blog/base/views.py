@@ -39,3 +39,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
 
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'  # If user is not logged in, redirect here.
+    redirect_field_name = 'base/post_detail.html'
+    form_class = PostForm
+    model = Post
