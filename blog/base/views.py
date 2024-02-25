@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.urls import reverse_lazy
 from .forms import PostForm, CommentForm
 from .models import Post
 from django.views.generic import (
@@ -8,7 +8,8 @@ from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 
 
@@ -45,3 +46,8 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'base/post_detail.html'
     form_class = PostForm
     model = Post
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy('post-list')  # redirect after post is deleted
