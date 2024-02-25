@@ -8,7 +8,7 @@ class PostForm(forms.ModelForm):
         fields = ('author', 'title', 'text')
 
         widgets = {  # So we can style using CSS
-            # editable medium-editor-textarea these classes are not ours, we'll be using ...
+            # editable medium-editor-textarea these classes are not ours, we'll be using Medium Style Editor
             'title': forms.TextInput(attrs={'class': 'textinputclass'}),
             'text': forms.Textarea(attrs={'class': 'editable medium-editor-textarea postcontent'}),
         }
