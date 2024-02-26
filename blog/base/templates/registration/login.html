@@ -1,0 +1,22 @@
+{%  extends 'base/base.html' %}
+
+{% block content %}
+
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+        <h2>Please Login:</h2>
+        <h3>(Must be SuperUser, please check with the site admin)</h3>
+
+        {% if form.errors %}
+            <p>Your username and password didn't match! Please try again.</p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn bnt-primary" value="Login">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+    </div>
+
+{% endblock %}
