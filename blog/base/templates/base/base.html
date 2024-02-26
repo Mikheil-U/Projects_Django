@@ -17,32 +17,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
 </head>
-<body class="loader">
+<body>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary techfont custom-navbar">
-          <div class="container-fluid">
+        <div class="container-fluid">
             <a class="navbar-brand bigbrand" href="{% url 'post-list' %}">My blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
+                <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
                 <a class="nav-link" href="http://www.github.com">GitHub</a>
                 <a class="nav-link" href="http://www.linkedin.com">LinkedIn</a>
+                <!-- Start of the left-aligned items -->
                 {% if user.is_authenticated %}
                     <a class="nav-link" href="{% url 'post-create' %}">New Post</a>
                     <a class="nav-link" href="{% url 'post-draft-list' %}">Drafts</a>
-                    <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-                    <a>Welcome: {{ user.username }}</a>
-                {% else %}
-                    <a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-asterisk"></span></a>
-
                 {% endif %}
-              </div>
+                </div>
+            <!-- Right-aligned items, using ms-auto for the right alignment -->
+                <div class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                        <a class="nav-item nav-link">Welcome: {{ user.username }}</a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
             </div>
-          </div>
+        </div>
     </nav>
+
 
     <!-- Content-->
     <div class="conent container">

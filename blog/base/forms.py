@@ -23,3 +23,4 @@ class CommentForm(forms.ModelForm):
             'author': forms.TextInput(attrs={'class': 'textinputclass'}),
             'text': forms.TextInput(attrs={'class': 'editable medium-editor-textarea'}),
         }
+

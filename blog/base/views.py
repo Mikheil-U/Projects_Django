@@ -1,4 +1,6 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,7 +13,8 @@ from django.views.generic import (
     DetailView,
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    FormView
 )
 
 
@@ -19,10 +22,9 @@ class AboutView(TemplateView):
     template_name = 'base/about.html'
 
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
-    # template_name = 'base/base.html'
-    # context_object_name = 'post'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
         """
@@ -80,7 +82,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post  # connect the comment to the post
             comment.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post-detail', pk=post.pk)
     else:
         form = CommentForm()
     return render(request, 'base/comment_form.html', {'form': form})
