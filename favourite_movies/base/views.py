@@ -11,7 +11,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Movie
+from .models import Movie, List
+
+
+class MovieListsView(LoginRequiredMixin, ListView):
+    model = List
+    template_name = 'base/base.html'
+    context_object_name = 'lists'
+
+
+class CreateMovieListView(LoginRequiredMixin, CreateView):
+    model = List
+    template_name = 'base/create-list.html'
+    pass
 
 
 class CustomLogin(LoginView):
@@ -51,6 +63,11 @@ class MoviesList(LoginRequiredMixin, ListView):
         """ For user specific data, so the user only gets their own data. """
         context = super().get_context_data(**kwargs)
         context['movies'] = context['movies'].filter(user=self.request.user)
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['movies'] = context['movies'].filter(title__icontains=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -86,7 +103,6 @@ class UpdateMovie(UpdateView):
     model = Movie
     fields = ['title', 'release_year', 'genre', 'director', 'imdb_rating']
     success_url = reverse_lazy('movies-list')
-
 
 
 

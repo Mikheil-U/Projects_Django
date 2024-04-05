@@ -18,11 +18,15 @@
           </li>
         {% endif %}
       </ul>
-      <!-- This div or ul wraps the search field and button, aligning them to the right -->
-      <form class="d-flex ms-auto" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      {% if user.is_authenticated %}
+          <!-- This div or ul wraps the search field and button, aligning them to the right -->
+          <form method="GET" class="d-flex ms-auto" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search-area" value="{{ search_input }}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+     {% endif %}
+
     </div>
   </div>
 </nav>

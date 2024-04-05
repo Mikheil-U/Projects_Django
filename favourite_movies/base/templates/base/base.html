@@ -9,6 +9,29 @@
 <body>
     {% include 'base/navbar.html' %}
     <div  class="container">
+        {% for list in lists %}
+            {% if list %}
+                <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><h3>{{ list.title }}</h3></div>
+                    <div class="card-body">
+                        <h4 class="card-title">Primary card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="{% url 'movies-list' %}" class="me-2">
+                            <button type="button" class="btn btn-primary">Details</button>
+                        </a>
+                        <a href="{% url 'movies-list' %}" class="ms-auto">
+                            <button type="button" class="btn btn-danger">Remove List</button>
+                        </a>
+                    </div>
+                </div>
+
+
+            {% else %}
+                <H1>You haven't created lists yet, create now...</H1>
+            {% endif %}
+        {% endfor %}
         {% block content %}
 
         {% endblock %}

@@ -4,7 +4,9 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.MoviesList.as_view(), name='movies-list'),
+    path('', views.MovieListsView.as_view(), name='lists'),
+
+    path('movies/', views.MoviesList.as_view(), name='movies-list'),
 
     path('login/', views.CustomLogin.as_view(), name='login'),
     path('logout/', views.custom_logout, name='logout'),
