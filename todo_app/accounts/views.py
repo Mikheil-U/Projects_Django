@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -29,4 +29,4 @@ class CustomRegisterView(CreateView):
 
 def user_logout(request):
     logout(request)
-    return render(request, 'accounts/logout.html', {})
+    return redirect('login')

@@ -48,7 +48,7 @@ class TodoDeleteView(LoginRequiredMixin, DeleteView):
 
 class TodoUpdateView(LoginRequiredMixin, UpdateView):
     model = Todo
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'completed']
     template_name = 'base/todo_create.html'
     success_url = reverse_lazy('todo-list')
 
