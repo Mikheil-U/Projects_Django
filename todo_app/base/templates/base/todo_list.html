@@ -57,7 +57,13 @@
                 <tr>
                     <td>{{ todo.title }}</td>
                     <td>{{ todo.description|truncatechars:25 }}</td>
-                    <td>{{ todo.completed }}</td>
+                    <td>
+                        {% if todo.completed == True %}
+                            <p> Complete </p>
+                        {% else %}
+                            <p> Incomplete </p>
+                        {% endif %}
+                    </td>
                     <td>{{ todo.created_at|date:"Y-m-d H:i" }}</td>
                     <td class="action-cell">
                         <div class="btn-group">
