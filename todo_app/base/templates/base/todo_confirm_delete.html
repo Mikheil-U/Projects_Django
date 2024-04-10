@@ -2,12 +2,20 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+    <style>
+        .container{
+            margin-top:20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+    </style>
     <div class="container">
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <p>Are you sure you want to remove this todo item ? </p>
+            <p>Are you sure you want to remove this "{{ todo.title }}" todo item ? </p>
             <button type="submit" class="btn btn-danger">remove</button>
             <a href="{% url 'todo-list' %}" class="btn btn-secondary">back</a>
         </form>
