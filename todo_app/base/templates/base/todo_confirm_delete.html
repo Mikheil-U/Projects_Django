@@ -9,8 +9,8 @@
             {{ form|crispy }}
             <p>Are you sure you want to remove this todo item ? </p>
             <button type="submit" class="btn btn-danger">remove</button>
+            <a href="{% url 'todo-list' %}" class="btn btn-secondary">back</a>
         </form>
-        <a href="{% url 'todo-list' %}" class="btn btn-secondary">back</a>
 
     </div>
 
