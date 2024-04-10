@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+   <style>
+
+        .container{
+            background: #5f788a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin-top: 100px;
+        }
+        .details-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .update-btn{ margin-left: 20px; }
+
+   </style>
+    <div class="container">
+        <h2>{{ todo.title }}</h2><hr>
+        <p><strong>Description:</strong> {{ todo.description }}</p>
+        <p><strong>Completed:</strong> {{ todo.completed|yesno:"Yes,No" }}</p>
+        <p><strong>Created At:</strong> {{ todo.created_at|date:"Y-m-d H:i" }}</p>
+
+    </div>
+    <div class="details-container">
+        <a href="{% url 'update-todo' todo.id %}" class="btn btn-primary ">update</a>
+        <a href="{% url 'todo-list' %}" class="btn btn-secondary update-btn">back</a>
+    </div>
+{% endblock %}

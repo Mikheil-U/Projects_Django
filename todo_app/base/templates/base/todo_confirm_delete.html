@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p>Are you sure you want to remove this todo item ? </p>
+            <button type="submit" class="btn btn-danger">remove</button>
+        </form>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <style>
+    .table-container {
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+        max-height: 300px; /* or any height you prefer */
+        margin-top: 300px;
+    }
+
+    table {
+        margin: auto;
+        max-width: 90%; /* Adjust based on your preference */
+        border-collapse: collapse; /* For styling */
+    }
+
+    th, td {
+        padding: 8px; /* For styling */
+        border: 1px solid #ddd; /* Adds borders to cells */
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9; /* For styling */
+    }
+    .action-buttons {
+        margin-top: 20px; /* Adds some space between the table and buttons */
+    }
+    .action-cell {
+        text-align: center; /* Center-align the content */
+    }
+
+    .btn-group {
+        display: inline-flex; /* Display buttons in a flex row */
+        justify-content: center; /* Center the buttons horizontally */
+        gap: 10px; /* Add some space between the buttons */
+    }
+    </style>
+
+    <div class="table-container">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Completed</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todo_list %}
+                <tr>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.description|truncatechars:25 }}</td>
+                    <td>{{ todo.completed }}</td>
+                    <td>{{ todo.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="action-cell">
+                        <div class="btn-group">
+                            <a href="{% url 'details-todo' todo.id %}"><button type="button" class="btn btn-secondary">details</button></a>
+                            <a href="{% url 'delete-todo' todo.pk %}"><button type="button" class="btn btn-danger">remove</button></a>
+                            {% if not todo.completed %}
+                                <form action="{% url 'complete-todo' todo.id %}" method="POST" >
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">complete</button>
+                                </form>
+                            {% endif %}
+                        </div>
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No todo items found.</td> <!-- Adjust colspan to include the action column -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 text-center action-buttons">
+        <a href="{% url 'create-todo' %}"><button type="submit" class="btn btn-primary">Add</button></a>
+    </div>
+{% endblock %}

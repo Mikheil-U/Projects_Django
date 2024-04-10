@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{lists.title}}" from the list?</p>
+            <button type="submit" class="btn btn-danger">delete</button>
+            <a href="{% url 'movies-list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+        </form>
+    </div>
+
+{% endblock %}
