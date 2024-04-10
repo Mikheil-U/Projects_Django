@@ -53,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for todo in todo_list %}
+                {% for todo in todos %}
                 <tr>
                     <td>{{ todo.title }}</td>
                     <td>{{ todo.description|truncatechars:25 }}</td>
@@ -87,6 +87,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="col-md-12 text-center action-buttons">
         <a href="{% url 'create-todo' %}"><button type="submit" class="btn btn-primary">Add</button></a>
     </div>
