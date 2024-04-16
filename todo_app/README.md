@@ -12,7 +12,14 @@ The app supports user authentication, allowing each user to have their personal 
 * Delete tasks as completed.
 * View a list of all tasks.
 
-![screenshot](1.png)
+![1](https://github.com/Mikheil-U/Projects_Django/assets/124485283/dafc84b3-af1b-4f65-b585-d30d81c9e81b)
+
+![2](https://github.com/Mikheil-U/Projects_Django/assets/124485283/c7f12812-424d-4b92-852f-5bdf22a3f064)
+
+![3](https://github.com/Mikheil-U/Projects_Django/assets/124485283/8f994e1c-2d4a-4df4-94af-caca54a6578f)
+
+![4](https://github.com/Mikheil-U/Projects_Django/assets/124485283/eb878939-bac5-42a3-b94a-364fe8a324fd)
+
 
 ## Technologies Used
 
