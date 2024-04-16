@@ -12,6 +12,8 @@ The app supports user authentication, allowing each user to have their personal 
 * Delete tasks as completed.
 * View a list of all tasks.
 
+![screenshot](1.png)
+
 ## Technologies Used
 
 * Backend Framework: Django
