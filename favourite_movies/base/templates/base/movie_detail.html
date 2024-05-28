@@ -8,5 +8,6 @@
         <p>{{movie.director}}</p>
         <p>{{movie.release_year}}</p>
     </div>
-    <a href="{% url 'movies-by-playlist' playlist_id %}" class="btn btn-secondary">back</a>
+    <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
+    <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>
 {% endblock %}

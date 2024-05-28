@@ -4,7 +4,7 @@
     <h1>{{playlist.title}}</h1>
     <ul>
         {% for movie in movies %}
-            <li><a href="{% url 'movie-detail' movie.id %}">{{ movie.title }}</a></li>
+            <li><a href="{% url 'movie-detail' movie.id playlist.id %}">{{ movie.title }}</a></li>
         {% endfor %}
     </ul>
     <a href="{% url 'playlist-delete' playlist.id %}"><button>delete playlist</button></a>
