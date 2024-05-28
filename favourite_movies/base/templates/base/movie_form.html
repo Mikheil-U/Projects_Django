@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container">
+        <form method="POST">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit">add</button>
+    </form>
+        <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
+    </div>
+
+{% endblock %}
