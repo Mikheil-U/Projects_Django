@@ -95,18 +95,6 @@ class MovieCreteView(LoginRequiredMixin, CreateView):
         return response
 
 
-# class MovieListView(ListView):
-#     model = Movie
-#     context_object_name = 'movies'
-#     template_name = 'base/movie_list.html'
-#
-#     def get_queryset(self):
-#         playlist_id = self.kwargs.get('playlist_id')
-#         if playlist_id:
-#             return Movie.objects.filter(playlists__id=playlist_id)
-#         return Movie.objects.all()
-
-
 class MovieDetailView(LoginRequiredMixin, DetailView):
     model = Movie
     context_object_name = 'movie'
