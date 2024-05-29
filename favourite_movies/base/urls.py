@@ -17,7 +17,8 @@ urlpatterns = [
     # path('movies/<int:playlist_id>/', views. MovieListView.as_view(), name='movies-by-playlist'),
     path('movie/<int:pk>/<int:playlist_id>/', views. MovieDetailView.as_view(), name='movie-detail'),
     path('movie/add/<int:playlist_id>/', views. MovieCreteView.as_view(), name='movie-create'),
-    path('movie/update/<int:playlist_id>/<int:pk>', views. MovieUpdateView.as_view(), name='movie-update'),
+    path('movie/update/<int:playlist_id>/<int:pk>/', views. MovieUpdateView.as_view(), name='movie-update'),
+    path('movie/delete/<int:playlist_id>/<int:pk>/', views. MovieDeleteView.as_view(), name='movie-delete'),
 
 
 
