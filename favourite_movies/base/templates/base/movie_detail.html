@@ -3,10 +3,11 @@
 {% block content %}
 
     <div class="container">
-        <p>{{movie.title}}</p>
-        <p>{{movie.genre}}</p>
-        <p>{{movie.director}}</p>
-        <p>{{movie.release_year}}</p>
+        <p>Title: {{movie.title}}</p>
+        <p>Genre: {{movie.genre}}</p>
+        <p>Director: {{movie.director}}</p>
+        <p>Release Date: {{movie.release_year}}</p>
+        <p>IMDB Rating: {{ movie.imdb_rating }}</p>
     </div>
     <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
     <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>

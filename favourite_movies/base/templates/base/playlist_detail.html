@@ -1,14 +1,22 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-    <h1>{{playlist.title}}</h1>
-    <ul>
-        {% for movie in movies %}
-            <li><a href="{% url 'movie-detail' movie.id playlist.id %}">{{ movie.title }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'playlist-delete' playlist.id %}"><button>delete playlist</button></a>
-    <a href="{% url 'playlist-update' playlist.id %}"><button>update playlist</button></a>
-    <a href="{% url 'movie-create' playlist.id %}"><button>add movie</button></a>
-    <a href="{% url 'playlists' %}"><button>back</button></a>
+<div class="container">
+    <div class="d-flex flex-column justify-content-center align-items-center"  style="height: 90vh;">
+        <h1>{{ playlist.title }}</h1>
+
+
+{#         <td>{{ movie.title|truncatechars:15 }}</td>#}
+{#         <td>{{ movie.created_at|date:"m-d-Y" }}</td>#}
+
+
+        <div class="my-3">
+            <a href="{% url 'movie-create' playlist.id %}" class="btn btn-success">Add Movie</a>
+            <a href="{% url 'playlist-update' playlist.id %}" class="btn btn-primary">Update Playlist</a>
+            <a href="{% url 'playlist-delete' playlist.id %}" class="btn btn-danger">Delete Playlist</a>
+            <a href="{% url 'playlists' %}" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

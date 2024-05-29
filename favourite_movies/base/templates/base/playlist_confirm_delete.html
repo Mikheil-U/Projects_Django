@@ -6,7 +6,7 @@
         {% csrf_token %}
         {{form.as_p}}
         <p>Are you sure you want to remove this playlist?</p>
-        <input type="submit" value="confirm">
+        <button type="submit" class="btn btn-danger">confirm</button>
     </form>
-
+    <a href="{% url 'playlist-details' playlist.id %}"><button class="btn btn-secondary">back</button></a>
 {% endblock %}
