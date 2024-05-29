@@ -135,6 +135,11 @@ class MovieUpdateView(LoginRequiredMixin, UpdateView):
 class MovieDeleteView(LoginRequiredMixin, DeleteView):
     model = Movie
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['playlist_id'] = self.kwargs.get('playlist_id')
+        return context
+
     def get_success_url(self):
         playlist_id = self.kwargs['playlist_id']
         return reverse_lazy('playlist-details', kwargs={'pk': playlist_id})

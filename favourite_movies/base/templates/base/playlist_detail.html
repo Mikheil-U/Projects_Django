@@ -17,8 +17,9 @@
               <div class="col col-6">Action</div>
             </li>
             {% for movie in movies %}
+
                 <li class="table-row">
-                  <div class="col col-1" data-label="Job Id">{{ movie.title|truncatechars:15 }}</div>
+                  <div class="col col-1" data-label="Job Id"><a href="{% url 'movie-detail' pk=movie.id playlist_id=playlist.id %}">{{ movie.title|truncatechars:15 }}</a></div>
                   <div class="col col-2" data-label="Customer Name">{{ movie.genre }}</div>
                   <div class="col col-3" data-label="Amount">{{ movie.director }}</div>
                   <div class="col col-4" data-label="Payment Status">{{ movie.release_year }}</div>

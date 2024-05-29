@@ -2,13 +2,25 @@
 
 {% block content %}
 
-    <div class="container">
-        <p>Title: {{movie.title}}</p>
-        <p>Genre: {{movie.genre}}</p>
-        <p>Director: {{movie.director}}</p>
-        <p>Release Date: {{movie.release_year}}</p>
-        <p>IMDB Rating: {{ movie.imdb_rating }}</p>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card text-white bg-dark mb-3" style="width: 45rem; height: 40rem;">
+          <div class="card-header"><h3>{{movie.title}}</h3></div>
+          <div class="card-body">
+            <p class="card-text">Genre: {{movie.genre}}</p>
+            <p class="card-text">Director: {{movie.director}}</p>
+            <p class="card-text">Release Year: {{movie.release_year}}</p>
+            <p class="card-text">IMDB Rating: {{movie.imdb_rating}}</p>
+            <p class="card-text">Watched: {{movie.watched}}</p>
+            <hr>
+            <p class="card-text">Description:</p>
+            <p class="card-text">{{movie.description}}</p>
+
+          </div>
+           <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
+           <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>
+           <a href="{% url 'movie-delete' playlist_id movie.id %}" class="btn btn-danger">delete</a>
+        </div>
+
     </div>
-    <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
-    <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>
+
 {% endblock %}
