@@ -26,7 +26,7 @@
                   <div class="col col-5" data-label="Payment Status">{{ movie.imdb_rating }}</div>
                   <div class="col col-6" data-label="Payment Status">
                       <a href="{% url 'movie-update' playlist_id=playlist.id pk=movie.id %}" class="btn btn-primary">update</a>
-                      <button class="btn btn-secondary">watched</button>
+                      <a href="{% url 'movie-watched' movie.id %}" class="btn btn-secondary">watched</a>
                       <a href="{% url 'movie-delete' playlist_id=playlist.id pk=movie.id %}" class="btn btn-danger">delete</a>
                   </div>
                 </li>
@@ -34,10 +34,6 @@
 
           </ul>
     </div>
-
-{#         <td>{{ movie.title|truncatechars:15 }}</td>#}
-{#         <td>{{ movie.created_at|date:"m-d-Y" }}</td>#}
-
 
         <div class="my-3">
             <a href="{% url 'movie-create' playlist.id %}" class="btn btn-success">Add Movie</a>

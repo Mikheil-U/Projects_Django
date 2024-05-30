@@ -10,7 +10,11 @@
             <p class="card-text">Director: {{movie.director}}</p>
             <p class="card-text">Release Year: {{movie.release_year}}</p>
             <p class="card-text">IMDB Rating: {{movie.imdb_rating}}</p>
-            <p class="card-text">Watched: {{movie.watched}}</p>
+              {% if movie.watched %}
+                <p class="card-text">Watched</p>
+              {% else %}
+                <p class="card-text">Not Watched</p>
+             {% endif %}
             <hr>
             <p class="card-text">Description:</p>
             <p class="card-text">{{movie.description}}</p>

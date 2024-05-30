@@ -1,8 +1,10 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import DeleteView, UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -16,6 +18,18 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('playlists')
+
+
+class CustomRegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'base/register.html'
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.save()
+        login(self.request, user)
+        return response
 
 
 def user_logout(request):
@@ -132,3 +146,17 @@ class MovieDeleteView(LoginRequiredMixin, DeleteView):
         playlist_id = self.kwargs['playlist_id']
         return reverse_lazy('playlist-details', kwargs={'pk': playlist_id})
 
+
+class MarkWatchedMovie(View):
+    template_name = 'base/mark_watched.html'
+
+    def get(self, request, pk):
+        movie = get_object_or_404(Movie, pk=pk)
+        return render(request, 'base/mark_watched.html', {'movie': movie})
+
+    def post(self, request, pk):
+        movie = get_object_or_404(Movie, pk=pk)
+        movie.watched = True
+        movie.save()
+        playlist_id = movie.playlists.first().id
+        return redirect('playlist-details', pk=playlist_id)
