@@ -23,7 +23,7 @@ class Movie(models.Model):
     watched = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['-watched']
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
