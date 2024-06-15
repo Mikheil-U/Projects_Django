@@ -2,11 +2,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <form method="POST">
+  <div class="table-container">
+    <form method="POST">
     {%csrf_token%}
     {{form|crispy}}
     <button type="submit" class="btn btn-primary">confirm</button>
     <a href="{% url 'playlists' %}" class="btn btn-secondary">back</a>
   </form>
+  </div>
 
 {% endblock %}
