@@ -3,37 +3,42 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'base/css/table.css' %}">
 
-<div class="container">
-    <div class="d-flex flex-column justify-content-center align-items-center"  style="height: 90vh;">
-        <h1>{{ playlist.title }}</h1>
-        <div class="container">
-          <ul class="responsive-table">
-            <li class="table-header">
-              <div class="col col-1">Title</div>
-              <div class="col col-2">Genre</div>
-              <div class="col col-3">Director</div>
-              <div class="col col-4">Release Date</div>
-              <div class="col col-5">IMDB Rating</div>
-              <div class="col col-6">Action</div>
-            </li>
+<h1>{{ playlist.title }}</h1>
+
+<div class="table-container">
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+              <th>Title</th>
+              <th>Gener</th>
+              <th>Director</th>
+              <th>Release Date</th>
+              <th>IMDB Rating</th>
+              <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
             {% for movie in movies %}
-
-                <li class="table-row">
-                  <div class="col col-1" data-label="Job Id"><a href="{% url 'movie-detail' pk=movie.id playlist_id=playlist.id %}">{{ movie.title|truncatechars:15 }}</a></div>
-                  <div class="col col-2" data-label="Customer Name">{{ movie.genre }}</div>
-                  <div class="col col-3" data-label="Amount">{{ movie.director }}</div>
-                  <div class="col col-4" data-label="Payment Status">{{ movie.release_year }}</div>
-                  <div class="col col-5" data-label="Payment Status">{{ movie.imdb_rating }}</div>
-                  <div class="col col-6" data-label="Payment Status">
-                      <a href="{% url 'movie-update' playlist_id=playlist.id pk=movie.id %}" class="btn btn-primary">update</a>
-                      <a href="{% url 'movie-watched' movie.id %}" class="btn btn-secondary">watched</a>
-                      <a href="{% url 'movie-delete' playlist_id=playlist.id pk=movie.id %}" class="btn btn-danger">delete</a>
-                  </div>
-                </li>
+                <tr>
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.genre}}</td>
+                    <td>{{movie.release_year}}</td>
+                    <td>{{movie.director}}</td>
+                    <td>{{movie.imdb_rating}}</td>
+                    <td>
+                        <a href="{% url 'movie-detail'  pk=movie.id playlist_id=playlist.id%}" class="btn btn-secondary">details</a>
+                        <a href="{% url 'movie-update'  pk=movie.id playlist_id=playlist.id %}" class="btn btn-primary">update</a>
+                        <a href="{% url 'movie-delete' playlist_id=playlist.id  pk=movie.id %}" class="btn btn-danger">delete</a>
+                    </td>
+                </tr>
             {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-          </ul>
-    </div>
+<div class="create-playlist-container">
+    <div class="d-flex flex-column justify-content-center align-items-center" >
+
 
         <div class="my-3">
             <a href="{% url 'movie-create' playlist.id %}" class="btn btn-success">Add Movie</a>
