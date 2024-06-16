@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+   <div class="table-container">
+        <form method="POST">
+        <p>Are you sure you want to delete this movie from the list?</p>
+        <button type="submit" class="btn btn-danger">confirm</button>
+   <a href="{% url 'playlist-details' pk=playlist_id %}" class="btn btn-secondary">back</a>
+
+    </form>
+   </div>
+
+{% endblock %}
