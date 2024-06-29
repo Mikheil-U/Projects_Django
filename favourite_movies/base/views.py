@@ -9,6 +9,7 @@ from django.views.generic import DeleteView, UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Playlist, Movie
+from django.http import JsonResponse
 
 
 class CustomLoginView(LoginView):
@@ -148,7 +149,6 @@ class MovieDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class MarkWatchedMovie(View):
-    template_name = 'base/mark_watched.html'
 
     def get(self, request, pk):
         movie = get_object_or_404(Movie, pk=pk)

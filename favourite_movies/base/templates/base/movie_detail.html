@@ -13,7 +13,14 @@
               {% if movie.watched %}
                 <p class="card-text">Watched</p>
               {% else %}
-                <p class="card-text">Not Watched</p>
+                  <div style="display: flex; justify-content: left;">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                    <p class="card-text">Not Watched</p>
+                    <a href="{% url 'movie-watched' movie.id %}" class="btn btn-primary" id="watched-button" style="margin-left: 10px;">watched</a>
+                    </form>
+                  </div>
              {% endif %}
             <hr>
             <p class="card-text">Description:</p>
@@ -26,5 +33,6 @@
         </div>
 
     </div>
+
 
 {% endblock %}
