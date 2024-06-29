@@ -34,6 +34,10 @@
                         <a href="{% url 'movie-delete' playlist_id=playlist.id  pk=movie.id %}" class="btn btn-danger">delete</a>
                     </td>
                 </tr>
+                {% empty %}
+            <tr>
+                <td colspan="6">This list is empty. Add new movies.</td> <!-- Adjust colspan to include the action column -->
+            </tr>
             {% endfor %}
         </tbody>
     </table>
