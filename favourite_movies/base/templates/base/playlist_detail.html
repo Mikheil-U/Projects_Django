@@ -13,7 +13,7 @@
         <thead class="table-dark">
           <tr>
               <th>Title</th>
-              <th>Gener</th>
+              <th>Genre</th>
               <th>Director</th>
               <th>Release Date</th>
               <th>IMDB Rating</th>
@@ -25,8 +25,8 @@
                 <tr>
                     <td><a href="{% url 'movie-detail' pk=movie.id playlist_id=playlist.pk %}">{{movie.title}}</a></td>
                     <td>{{movie.genre}}</td>
-                    <td>{{movie.release_year}}</td>
                     <td>{{movie.director}}</td>
+                    <td>{{movie.release_year}}</td>
                     <td>{{movie.imdb_rating}}</td>
                     <td>
                         <a href="{% url 'movie-detail'  pk=movie.id playlist_id=playlist.id%}" class="btn btn-secondary">details</a>
