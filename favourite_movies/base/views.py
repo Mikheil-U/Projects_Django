@@ -9,7 +9,6 @@ from django.views.generic import DeleteView, UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Playlist, Movie
-from django.http import JsonResponse
 
 
 class CustomLoginView(LoginView):

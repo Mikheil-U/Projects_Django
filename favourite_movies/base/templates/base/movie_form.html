@@ -3,14 +3,28 @@
 {% block content %}
 
     <style>
-        .movie-add-container{
+        .movie-add-container {
             width: 50%;
-            margin: 0 auto;
+            margin: 100px auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #f9f9f9;
+            height: 620px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .movie-add-container form {
+            flex-grow: 1;
+        }
+
+        .movie-add-container button,
+        .movie-add-container a {
+            margin-top: 10px; /* Add some space between buttons and form */
         }
     </style>
 
@@ -20,8 +34,7 @@
         {{form|crispy}}
         <button type="submit" class="btn btn-success">add</button>
         <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
-
-    </form>
+        </form>
     </div>
 
 {% endblock %}
