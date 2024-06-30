@@ -2,37 +2,71 @@
 
 {% block content %}
 
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="card text-white bg-dark mb-3" style="width: 45rem; height: 40rem;">
-          <div class="card-header"><h3>{{movie.title}}</h3></div>
-          <div class="card-body">
-            <p class="card-text">Genre: {{movie.genre}}</p>
-            <p class="card-text">Director: {{movie.director}}</p>
-            <p class="card-text">Release Year: {{movie.release_year}}</p>
-            <p class="card-text">IMDB Rating: {{movie.imdb_rating}}</p>
-              {% if movie.watched %}
-                <p class="card-text">Watched</p>
-              {% else %}
-                  <div style="display: flex; justify-content: left;">
-                    <form method="POST">
-                        {% csrf_token %}
-
-                    <p class="card-text">Not Watched</p>
-                    <a href="{% url 'movie-watched' movie.id %}" class="btn btn-primary" id="watched-button" style="margin-left: 10px;">watched</a>
-                    </form>
-                  </div>
-             {% endif %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-white bg-dark mb-3" style="width: 45rem; height: 40rem;">
+        <div class="card-header">
+            <h3>{{ movie.title }}</h3>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Genre: {{ movie.genre }}</p>
+            <p class="card-text">Director: {{ movie.director }}</p>
+            <p class="card-text">Release Year: {{ movie.release_year }}</p>
+            <p class="card-text">IMDB Rating: {{ movie.imdb_rating }}</p>
+            <p class="card-text" id="watch-status">
+                {% if movie.watched %}
+                Watched
+                {% else %}
+                Not Watched
+                {% endif %}
+            </p>
+            <button class="btn btn-primary" id="watched-button" data-watched="{{ movie.watched|yesno:'true,false' }}" style="margin-left: 10px;">
+                {% if movie.watched %}
+                Mark as Unwatched
+                {% else %}
+                Mark as Watched
+                {% endif %}
+            </button>
             <hr>
             <p class="card-text">Description:</p>
-            <p class="card-text">{{movie.description}}</p>
-
-          </div>
-           <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
-           <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>
-           <a href="{% url 'movie-delete' playlist_id movie.id %}" class="btn btn-danger">delete</a>
+            <p class="card-text">{{ movie.description }}</p>
         </div>
-
+        <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
+        <a href="{% url 'movie-update' playlist_id movie.id %}" class="btn btn-primary">update</a>
+        <a href="{% url 'movie-delete' playlist_id movie.id %}" class="btn btn-danger">delete</a>
     </div>
+</div>
+
+<script>
+document.getElementById('watched-button').addEventListener('click', function() {
+    const currentStatus = this.getAttribute('data-watched') === 'true';
+    fetch("{% url 'movie-watched-toggle' movie.id %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({ watched: !currentStatus })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const watchStatus = document.getElementById('watch-status');
+            if (data.watched) {
+                watchStatus.innerHTML = 'Watched';
+                this.setAttribute('data-watched', 'true');
+                this.innerHTML = 'Mark as Unwatched';
+            } else {
+                watchStatus.innerHTML = 'Not Watched';
+                this.setAttribute('data-watched', 'false');
+                this.innerHTML = 'Mark as Watched';
+            }
+        } else {
+            console.error('Failed to toggle watch status');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
 
 
 {% endblock %}

@@ -17,7 +17,7 @@ urlpatterns = [
     path('playlist/update/<int:pk>/', views. PlaylistUpdateView.as_view(), name='playlist-update'),
 
     # Movies
-    path('movie/watched/<int:pk>/', views.MarkWatchedMovie.as_view(), name='movie-watched'),
+    path('movie/watched/<int:pk>/', views.ToggleWatchedMovie.as_view(), name='movie-watched-toggle'),
 
     path('movie/<int:pk>/<int:playlist_id>/', views. MovieDetailView.as_view(), name='movie-detail'),
     path('movie/add/<int:playlist_id>/', views. MovieCreteView.as_view(), name='movie-create'),

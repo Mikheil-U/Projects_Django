@@ -2,9 +2,12 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.http import require_POST
 from django.views.generic import DeleteView, UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -147,15 +150,10 @@ class MovieDeleteView(LoginRequiredMixin, DeleteView):
         return reverse_lazy('playlist-details', kwargs={'pk': playlist_id})
 
 
-class MarkWatchedMovie(View):
-
-    def get(self, request, pk):
-        movie = get_object_or_404(Movie, pk=pk)
-        return render(request, 'base/mark_watched.html', {'movie': movie})
-
+@method_decorator(require_POST, name='dispatch')
+class ToggleWatchedMovie(View):
     def post(self, request, pk):
         movie = get_object_or_404(Movie, pk=pk)
-        movie.watched = True
+        movie.watched = not movie.watched
         movie.save()
-        playlist_id = movie.playlists.first().id
-        return redirect('playlist-details', pk=playlist_id)
+        return JsonResponse({'success': True, 'watched': movie.watched})
