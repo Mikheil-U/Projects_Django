@@ -61,6 +61,12 @@ class PlaylistsListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['playlists'] = context['playlists'].filter(user=self.request.user)
         context['count'] = context['playlists'].count()
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['playlists'] = context['playlists'].filter(
+                title__icontains=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -73,6 +79,11 @@ class PlayListDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         playlist = self.get_object()
         context['movies'] = playlist.movies.all()  # Add movies to the context
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['movies'] = context['movies'].filter(
+                title__icontains=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -157,3 +168,4 @@ class ToggleWatchedMovie(View):
         movie.watched = not movie.watched
         movie.save()
         return JsonResponse({'success': True, 'watched': movie.watched})
+
