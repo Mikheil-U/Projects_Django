@@ -123,6 +123,8 @@ STATIC_URL = 'static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

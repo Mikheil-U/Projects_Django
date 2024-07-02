@@ -1,4 +1,6 @@
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -18,22 +20,23 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('playlists')
+        return reverse_lazy('home')
 
 
-class PeopleListView(ListView):
+
+class RecordListView(LoginRequiredMixin, ListView):
     model = Record
     context_object_name = 'record'
     template_name = 'base/base.html'
 
 
-class PeopleDetailView(DetailView):
+class RecordDetailView(LoginRequiredMixin, DetailView):
     model = Record
     context_object_name = 'record'
     template_name = 'base/record-detail.html'
 
 
-class PeopleCreateView(CreateView):
+class RecordCreateView(LoginRequiredMixin, CreateView):
     model = Record
     template_name = 'base/add-record.html'
     fields = ['name', 'address', 'city', 'state', 'zip']
@@ -44,7 +47,7 @@ class PeopleCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PeopleUpdateView(UpdateView):
+class RecordUpdateView(LoginRequiredMixin, UpdateView):
     model = Record
     fields = ['name', 'address', 'city', 'state', 'zip']
     template_name = 'base/add-record.html'
@@ -55,11 +58,12 @@ class PeopleUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class PeopleDeleteView(DeleteView):
+class RecordDeleteView(LoginRequiredMixin, DeleteView):
     model = Record
     success_url = reverse_lazy('home')
 
 
+@login_required()
 def user_logout(request):
     logout(request)
     return redirect('login')
