@@ -1,15 +1,15 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-    <p>ID: {{ person.id }}</p>
-    <p>Name: {{ person.name }}</p>
-    <p>Address: {{ person.address }}</p>
-    <p>City: {{ person.city }}</p>
-    <p>State: {{ person.state }}</p>
-    <p>Zip: {{ person.zip }}</p>
+    <p>ID: {{ record.id }}</p>
+    <p>Name: {{ record.name }}</p>
+    <p>Address: {{ record.address }}</p>
+    <p>City: {{ record.city }}</p>
+    <p>State: {{ record.state }}</p>
+    <p>Zip: {{ record.zip }}</p>
     <div class="action-button-group">
         <a href="{% url 'home' %}" class="btn btn-secondary">back</a>
-        <a href="{% url 'update-record' person.id %}" class="btn btn-primary">update</a>
-        <a href="{% url 'delete-record' person.id %}" class="btn btn-danger">delete</a>
+        <a href="{% url 'update-record' record.id %}" class="btn btn-primary">update</a>
+        <a href="{% url 'delete-record' record.id %}" class="btn btn-danger">delete</a>
     </div>
 {% endblock %}

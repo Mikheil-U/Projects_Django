@@ -26,20 +26,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for person in people %}
+                {% for r in record %}
                 <tr>
-                    <td><a href="{% url 'details-record' person.id %}">{{ person.id }}</a></td>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.address|truncatechars:10 }}</td>
-                    <td>{{ person.city }}</td>
-                    <td>{{ person.state }}</td>
-                    <td>{{ person.zip }}</td>
+                    <td><a href="{% url 'details-record' r.id %}">{{ r.id }}</a></td>
+                    <td>{{ r.name }}</td>
+                    <td>{{ r.address|truncatechars:10 }}</td>
+                    <td>{{ r.city }}</td>
+                    <td>{{ r.state }}</td>
+                    <td>{{ r.zip }}</td>
 
                     <td class="action-cell">
                         <div class="btn-group">
-                            <a href="{% url 'details-record' person.id %}"><button type="button" class="btn btn-secondary">details</button></a>
-                            <a href="{% url 'update-record' person.id %}"><button type="button" class="btn btn-primary">update</button></a>
-                            <a href="{% url 'delete-record' person.id %}"><button type="button" class="btn btn-danger">delete</button></a>
+                            <a href="{% url 'details-record' r.id %}"><button type="button" class="btn btn-secondary">details</button></a>
+                            <a href="{% url 'update-record' r.id %}"><button type="button" class="btn btn-primary">update</button></a>
+                            <a href="{% url 'delete-record' r.id %}"><button type="button" class="btn btn-danger">delete</button></a>
                         </div>
 
                     </td>

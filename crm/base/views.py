@@ -6,23 +6,23 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Person
+from .models import Record
 
 
 class PeopleListView(ListView):
-    model = Person
-    context_object_name = 'people'
+    model = Record
+    context_object_name = 'record'
     template_name = 'base/base.html'
 
 
 class PeopleDetailView(DetailView):
-    model = Person
-    context_object_name = 'person'
+    model = Record
+    context_object_name = 'record'
     template_name = 'base/record-detail.html'
 
 
 class PeopleCreateView(CreateView):
-    model = Person
+    model = Record
     template_name = 'base/add-record.html'
     fields = ['name', 'address', 'city', 'state', 'zip']
     success_url = reverse_lazy('home')
@@ -33,7 +33,7 @@ class PeopleCreateView(CreateView):
 
 
 class PeopleUpdateView(UpdateView):
-    model = Person
+    model = Record
     fields = ['name', 'address', 'city', 'state', 'zip']
     template_name = 'base/add-record.html'
     success_url = reverse_lazy('home')
@@ -44,5 +44,5 @@ class PeopleUpdateView(UpdateView):
 
 
 class PeopleDeleteView(DeleteView):
-    model = Person
+    model = Record
     success_url = reverse_lazy('home')
