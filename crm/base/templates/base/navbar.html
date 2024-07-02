@@ -10,13 +10,13 @@
               <ul class="navbar-nav me-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                  <a class="nav-link active" href="#">Logout
-                    <span class="visually-hidden">(current)</span>
+                      <a class="nav-link active" href="{% url 'logout' %}">Logout
+                        <span class="visually-hidden">(current)</span>
                   </a>
                 </li>
                 {% else %}
                     <li class="nav-item">
-                  <a class="nav-link active" href="#">Login
+                  <a class="nav-link active" href="{% url 'login' %}">Login
                     <span class="visually-hidden">(current)</span>
                   </a>
                 </li>
