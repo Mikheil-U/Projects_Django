@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for r in record %}
+                {% for r in records %}
                 <tr>
                     <td><a href="{% url 'details-record' r.id %}">{{ r.id }}</a></td>
                     <td>{{ r.name }}</td>

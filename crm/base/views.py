@@ -38,8 +38,13 @@ class CustomRegisterView(CreateView):
 
 class RecordListView(LoginRequiredMixin, ListView):
     model = Record
-    context_object_name = 'record'
+    context_object_name = 'records'
     template_name = 'base/base.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['records'] = context['records'].filter(user=self.request.user)
+        return context
 
 
 class RecordDetailView(LoginRequiredMixin, DetailView):
