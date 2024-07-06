@@ -1,13 +1,41 @@
 {% extends 'base/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .record-delete {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 300px;
+        margin-top: 100px;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    <form method="POST">
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="record-delete">
+    <h2>Name: {{ record.name }}</h2>
+    <form method="POST" style="width: 100%;">
         {% csrf_token %}
         {{ form|crispy }}
-        <p>Are you sure you want to delete the record?</p>
-        <button type="submit" class="btn btn-danger">confirm</button>
+        <p class="text-center">Are you sure you want to delete the record?</p>
+        <div class="button-group">
+            <button type="submit" class="btn btn-danger w-50">Confirm</button>
+            <a href="{% url 'details-record' record.id %}" class="btn btn-secondary w-50">Back</a>
+        </div>
     </form>
-    <a href="{% url 'details-record' record.id %}" class="btn btn-secondary">back</a>
-
+</div>
 {% endblock %}
