@@ -44,6 +44,11 @@ class RecordListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['records'] = context['records'].filter(user=self.request.user)
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['records'] = context['records'].filter(name__icontains=search_input)
+        context['search_input'] = search_input
         return context
 
 
