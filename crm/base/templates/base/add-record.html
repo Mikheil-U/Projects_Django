@@ -11,7 +11,7 @@
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-success w-100 mt-3">Add</button>
             </form>
-            <a href="{% url 'home' %}" class="btn btn-secondary w-100 mt-2">Back</a>
+            <a href="{% url 'details-record' record.id %}" class="btn btn-secondary w-100 mt-2">Back</a>
         </div>
     </div>
 </div>
