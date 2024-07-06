@@ -1,15 +1,19 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-    <p>ID: {{ record.id }}</p>
-    <p>Name: {{ record.name }}</p>
-    <p>Address: {{ record.address }}</p>
-    <p>City: {{ record.city }}</p>
-    <p>State: {{ record.state }}</p>
-    <p>Zip: {{ record.zip }}</p>
-    <div class="action-button-group">
+    <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+      <div class="card-header">{{ record.name }}</div>
+      <div class="card-body">
+        <p>Address: {{ record.address }}</p>
+        <p>City: {{ record.city }}</p>
+        <p>State: {{ record.state }}</p>
+        <p>Zip: {{ record.zip }}</p>
+      </div>
+    <div class="action-button-group" style="background: #8d9da8;">
         <a href="{% url 'home' %}" class="btn btn-secondary">back</a>
         <a href="{% url 'update-record' record.id %}" class="btn btn-primary">update</a>
         <a href="{% url 'delete-record' record.id %}" class="btn btn-danger">delete</a>
     </div>
+    </div>
+
 {% endblock %}
