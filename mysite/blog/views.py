@@ -8,6 +8,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.urls import reverse_lazy
 
 from .forms import PostForm, CommentForm
 from .models import Post, Comment
@@ -44,5 +45,17 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 
 
 class DeletePostView(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
     model = Post
+    success_url = reverse_lazy('post_list')
+
+
+class DraftListView(LoginRequiredMixin, ListView):
+    """
+     Lists all draft posts
+    """
+    login_url = '/login/'
+    redirect_field_name = 'blog/post_list.html'
+    model = Post
+
+    def get_queryset(self):
+        return Post.objects.filter(published_date__isnull=True).order_by('created_date')
