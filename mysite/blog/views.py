@@ -82,5 +82,5 @@ def add_comment_to_post(request, pk: int):
 @login_required
 def comment_approve(request, pk: int):
     comment = get_object_or_404(Comment, pk=pk)
-    comment.approved()
+    comment.approve()
     return redirect('post_detail', pk=comment.pk)
