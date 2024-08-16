@@ -13,10 +13,10 @@
     <p class="postcontent">{{ post.title|safe|linebreaksbr }}</p>
 
     {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+        <a class="btn btn-primary" href="{% url 'post_update' pk=post.pk %}">
             <span>edit</span>
         </a>
-        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+        <a class="btn btn-primary" href="{% url 'post_delete' pk=post.pk %}">
             <span>remove</span>
         </a>
     {% endif %}

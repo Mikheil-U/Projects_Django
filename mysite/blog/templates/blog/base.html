@@ -39,10 +39,10 @@
           <ul class="nav navbar-nav navbar-right">
               {% if user.is_authenticated %}
                   <li>
-                    <a href="{% url 'post_new' %}">New Post</a>
+                    <a href="{% url 'post_create' %}">New Post</a>
                   </li>
                   <li>
-                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                    <a href="{% url 'drafts' %}">Drafts</a>
                   </li>
                   <li>
                     <a href="{% url 'logout' %}">Logout</a>
