@@ -6,5 +6,5 @@
         <p>Are you sure you want to delete {{ object }}?</p>
         <input type="submit" class="btn btn-danger" value="Delete">
     </form>
-
+    <a class="btn btn-secondary" href="{% url 'post_detail' pk=post.pk %}">back</a>
 {% endblock %}
