@@ -1,9 +1,10 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+
 <div class="post-container">
-    <div class="mt-4 p-5 bg-primary text-white rounded">
+    <div class="">
         <h2>Please Login:</h2>
-        <h3>(Must be SuperUser, please check with the site admin)</h3>
 
         {% if form.errors %}
             <p>Your username and password didn't match! Please try again.</p>
@@ -11,11 +12,10 @@
 
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <input type="submit" class="btn btn-primary" value="Login">
             <input type="hidden" name="next" value="{{ next }}">
         </form>
-
 
     </div>
 </div>
