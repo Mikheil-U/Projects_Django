@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -35,8 +36,9 @@ class PostDetailView(DetailView):
 class CreatePostView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
-    form_class = PostForm
+    # form_class = PostForm
     model = Post
+    fields = ['author', 'title', 'text']
 
 
 class UpdatePostView(LoginRequiredMixin, UpdateView):
@@ -49,6 +51,7 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
+    context_object_name = 'post'
 
 
 class DraftListView(LoginRequiredMixin, ListView):
@@ -102,4 +105,9 @@ def comment_remove(request, pk: int):
     comment.delete()
     return redirect('post_detail', pk=post_pk)
 
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
