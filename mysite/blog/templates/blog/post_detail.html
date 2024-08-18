@@ -1,14 +1,20 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-    <h1 class="posttitle loader">{{ post.title }}</h1>
-    {% if post.published_date %}
+    <div class="post-header">
+        <h1 class="posttitle loader">{{ post.title }}</h1>
+        <h3 style="text-align: center;">Author: {{ post.author|safe }}</h3>
+        {% if post.published_date %}
         <div class="date postdate">
             {{ post.published_date|date:'l, j, F Y' }}
         </div>
-    {% else %}
-        <a class="btn btn-success" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
-    {% endif %}
+        {% else %}
+            <a class="btn btn-success" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}
+    </div>
+
+    <div class="post-detail">
+
 
     <p class="postcontent">{{ post.text|safe|linebreaksbr }}</p>
 
@@ -20,30 +26,32 @@
             <span>remove</span>
         </a>
     {% endif %}
+    </div>
 
     <hr>
 
-    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
-
-    <div class="container">
-        {% for comment in post.comments.all %}
-            <br>
-            {% if user.is_authenticated or comment.approved_comment %}
-                {{ comment.create_date }}
-                {% if not comment.approved_comment %}
-                     <a class="btn btn-danger" href="{% url 'comment_remove' pk=comment.pk %}">
-                        <span>remove</span>
-                     </a>
-                     <a class="btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}">
-                        <span>approve</span>
-                    </a>
-                {% endif %}
-
-                <p>{{ comment.text|safe }}</p>
-                <p>Posted By: {{ comment.author }}</p>
-            {% endif %}
-            {% empty %}
-                <p>No Comments</p>
-        {% endfor %}
+    <div class="add-comment-btn">
+        <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
     </div>
+
+    <div class="comments-container">
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            {% if user.is_authenticated or comment.approved_comment %}
+                <div class="comment-header"><span>{{ comment.create_date }}</span>
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-danger"href="{% url 'comment_remove' pk=comment.pk %}"><span>Remove</span></a>
+                        <a class="btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}"><span>Approve</span></a>
+                    {% endif %}
+                </div>
+                <div class="comment-body">
+                    <p>{{ comment.text|safe }}</p>
+                    <p>Posted By: {{ comment.author }}</p>
+                </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No Comments</p>
+    {% endfor %}
+</div>
 {% endblock %}
