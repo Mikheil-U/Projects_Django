@@ -8,8 +8,6 @@
         <div class="date postdate">
             {{ post.published_date|date:'l, j, F Y' }}
         </div>
-        {% else %}
-            <a class="btn btn-success" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
     </div>
 
@@ -19,12 +17,16 @@
     <p class="postcontent">{{ post.text|safe|linebreaksbr }}</p>
 
     {% if user.is_authenticated %}
+        {% if not post.published_date %}
+            <a class="btn btn-success" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}
         <a class="btn btn-primary" href="{% url 'post_update' pk=post.pk %}">
             <span>edit</span>
         </a>
         <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}">
             <span>remove</span>
         </a>
+
     {% endif %}
     </div>
 

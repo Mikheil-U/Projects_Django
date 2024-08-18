@@ -8,7 +8,11 @@
             <p>{{ post.text|safe|truncatechars:60}}</p>
             <p>Created on: {{ post.create_date|date:"l, j F Y" }}</p>
         <div class="post-card-actions">
-            <a href="{% url 'post_publish' post.pk %}"><button class="btn btn-success">publish</button></a>
+            {% if post.publish_date %}
+            {% else %}
+                <a type="submit" href="{% url 'post_publish' post.pk %}"><button class="btn btn-success">publish</button></a>
+
+            {% endif %}
             <a href="{% url 'post_detail' post.pk %}"><button class="btn btn-primary">read more</button></a>
             <a href="{% url 'post_delete' post.pk %}"><button class="btn btn-danger">delete</button></a>
 
