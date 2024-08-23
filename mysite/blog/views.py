@@ -27,7 +27,10 @@ class PostListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return Post.objects.filter(
+            published_date__lte=timezone.now(),
+            author=self.request.user
+        ).order_by('-published_date')
 
 
 class PostDetailView(DetailView):
@@ -38,14 +41,22 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
     model = Post
-    fields = ['author', 'title', 'text']
+    fields = ['title', 'text']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
     model = Post
-    fields = ['author', 'title', 'text']
+    fields = ['title', 'text']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class DeletePostView(LoginRequiredMixin, DeleteView):
@@ -65,7 +76,10 @@ class DraftListView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__isnull=True).order_by('create_date')
+        return Post.objects.filter(
+            published_date__isnull=True,
+            author=self.request.user
+            ).order_by('-create_date')
 
 
 @login_required
