@@ -14,6 +14,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Post, Comment
+from .forms import CommentForm
 
 
 class AboutView(TemplateView):
@@ -23,6 +24,7 @@ class AboutView(TemplateView):
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
