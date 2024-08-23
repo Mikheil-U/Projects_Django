@@ -7,7 +7,7 @@
         <div class="post-card">
             <h2>{{ post.title|safe|truncatechars:60 }}</h2>
             <hr>
-            <p>{{ post.text|safe|truncatechars:60}}</p>
+            <p>{{ post.text|safe|truncatechars:350}}</p>
             <p>Published on: {{ post.published_date|date:"l, j F Y" }}</p>
             <p>Comments: {{ post.approve_comments.count }}</p>
         <div class="post-card-actions">
