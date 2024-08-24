@@ -10,6 +10,13 @@ This is a Django-powered blog website where users with admin privileges can crea
 - **Pagination**: Blog posts are paginated, showing 5 posts per page.
 - **User Authentication**: Only authenticated users can create, update, or delete posts and comments.
 
+![image](https://github.com/user-attachments/assets/fcda975c-d052-4f4e-8fbd-bd5645e3066e)
+![image](https://github.com/user-attachments/assets/e98626f5-f82d-4be8-ba4b-2a9c08572ed1)
+![image](https://github.com/user-attachments/assets/c94cfabf-eefe-427e-b8f2-7ba7d16992c0)
+![image](https://github.com/user-attachments/assets/fd794c6e-feab-4e0b-994d-8a940caeea89)
+![image](https://github.com/user-attachments/assets/49bd3ab1-bc4d-4fd8-9771-064ced743aa5)
+
+
 ## Models
 
 ### Post Model
