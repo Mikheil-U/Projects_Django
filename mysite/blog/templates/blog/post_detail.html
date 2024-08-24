@@ -37,23 +37,26 @@
     </div>
 
     <div class="comments-container">
-    {% for comment in post.comments.all %}
-        <div class="comment">
+        {% for comment in post.comments.all %}
             {% if user.is_authenticated or comment.approved_comment %}
-                <div class="comment-header"><span>{{ comment.create_date }}</span>
-                    {% if not comment.approved_comment %}
-                        <a class="btn btn-danger"href="{% url 'comment_remove' pk=comment.pk %}"><span>Remove</span></a>
-                        <a class="btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}"><span>Approve</span></a>
-                    {% endif %}
-                </div>
-                <div class="comment-body">
-                    <p>{{ comment.text|safe }}</p>
-                    <p>Posted By: {{ comment.author }}</p>
+                <div class="comment">
+                    <div class="comment-header">
+                        <span>{{ comment.create_date }}</span>
+                        {% if not comment.approved_comment %}
+                            <a class="btn btn-danger" href="{% url 'comment_remove' pk=comment.pk %}"><span>Remove</span></a>
+                            <a class="btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}"><span>Approve</span></a>
+                        {% endif %}
+                    </div>
+                    <div class="comment-body">
+                        <p>{{ comment.text|safe }}</p>
+                        <p>Posted By: {{ comment.author }}</p>
+                    </div>
                 </div>
             {% endif %}
-        </div>
-    {% empty %}
-        <p>No Comments</p>
-    {% endfor %}
-</div>
+        {% empty %}
+            <p>No Comments</p>
+        {% endfor %}
+    </div>
 {% endblock %}
+
+
