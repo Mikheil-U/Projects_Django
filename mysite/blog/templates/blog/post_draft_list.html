@@ -2,6 +2,7 @@
 {% block content %}
 
 <div class="post-container">
+    <h1>Drafts</h1>
     {% for post in posts %}
         <div class="post-card">
             <h2>{{ post.title|truncatechars:60 }}</h2>
