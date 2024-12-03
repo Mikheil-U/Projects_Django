@@ -1,16 +1,13 @@
 {% extends 'base/base.html' %}
 {% load crispy_forms_tags %}
 
+    <title>Register</title>
 {% block content %}
-<h1>Register</h1>
-
-   <div class="container">
+    <div class="d-flex flex-column  align-items-center">
         <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Register" class="btn btn-primary">
-    </form>
-   </div>
-
-    <p>Already have <a href="{% url 'login' %}">Login</a></p>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">register</button>
+        </form>
+    </div>
 {% endblock %}

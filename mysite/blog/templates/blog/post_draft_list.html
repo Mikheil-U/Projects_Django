@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<div class="post-container">
+    <h1>Drafts</h1>
+    {% for post in posts %}
+        <div class="post-card">
+            <h2>{{ post.title|truncatechars:60 }}</h2>
+            <hr>
+            <p>{{ post.text|safe|truncatechars:350}}</p>
+            <p>Created on: {{ post.create_date|date:"l, j F Y" }}</p>
+        <div class="post-card-actions">
+            {% if post.publish_date %}
+            {% else %}
+                <a type="submit" href="{% url 'post_publish' post.pk %}"><button class="btn btn-success">publish</button></a>
+
+            {% endif %}
+            <a href="{% url 'post_detail' post.pk %}"><button class="btn btn-primary">read more</button></a>
+            <a href="{% url 'post_delete' post.pk %}"><button class="btn btn-danger">delete</button></a>
+
+        </div>
+        </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

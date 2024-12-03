@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Add Record</h5>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success w-100 mt-3">Add</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-secondary w-100 mt-2">Back</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

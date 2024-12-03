@@ -4,14 +4,26 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.MoviesList.as_view(), name='movies-list'),
+    # Authentication
+    path('login/', views.CustomLoginView.as_view(), name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('register/', views.CustomRegisterView.as_view(), name='register'),
 
-    path('login/', views.CustomLogin.as_view(), name='login'),
-    path('logout/', views.custom_logout, name='logout'),
-    path('register/', views.RegisterPage.as_view(), name='register'),
+    # Playlists
+    path('', views. PlaylistsListView.as_view(), name='playlists'),
+    path('playlist/create/', views.PlaylistCreateView.as_view(), name='playlist-create'),
+    path('playlist/<int:pk>/', views. PlayListDetailView.as_view(), name='playlist-details'),
+    path('playlist/delete/<int:pk>/', views. PlaylistDeleteView.as_view(), name='playlist-delete'),
+    path('playlist/update/<int:pk>/', views. PlaylistUpdateView.as_view(), name='playlist-update'),
 
-    path('add-movie/', views.AddMovie.as_view(), name='add-movie'),
-    path('detail-movie/<int:pk>/', views.MovieDetail.as_view(), name='detail-movie'),
-    path('delete-movie/<int:pk>/', views.MovieDelete.as_view(), name='delete-movie'),
-    path('update-movie/<int:pk>/', views.UpdateMovie.as_view(), name='update-movie'),
+    # Movies
+    path('movie/watched/<int:pk>/', views.ToggleWatchedMovie.as_view(), name='movie-watched-toggle'),
+
+    path('movie/<int:pk>/<int:playlist_id>/', views. MovieDetailView.as_view(), name='movie-detail'),
+    path('movie/add/<int:playlist_id>/', views. MovieCreteView.as_view(), name='movie-create'),
+    path('movie/update/<int:playlist_id>/<int:pk>/', views. MovieUpdateView.as_view(), name='movie-update'),
+    path('movie/delete/<int:playlist_id>/<int:pk>/', views. MovieDeleteView.as_view(), name='movie-delete'),
+
+
+
 ]

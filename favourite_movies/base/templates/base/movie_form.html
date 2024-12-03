@@ -1,13 +1,40 @@
 {% extends 'base/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <form method="POST" action="">
-        {% csrf_token %}
-        {{ form|crispy }}
-          <button type="submit" class="btn btn-success">Add</button>
-          <a href="{% url 'movies-list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
 
+    <style>
+        .movie-add-container {
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            height: 620px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .movie-add-container form {
+            flex-grow: 1;
+        }
+
+        .movie-add-container button,
+        .movie-add-container a {
+            margin-top: 10px; /* Add some space between buttons and form */
+        }
+    </style>
+
+    <div class="movie-add-container">
+        <form method="POST">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-success">add</button>
+        <a href="{% url 'playlist-details' playlist_id %}" class="btn btn-secondary">back</a>
         </form>
     </div>
+
 {% endblock %}

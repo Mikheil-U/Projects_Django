@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+   <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .container{
+            background: #5f788a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            width: 80%;
+            min-height: 50vh; /* Make sure it covers the whole viewport */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+            border-radius: 10px; /* Rounded corners */
+            color: #f0f0f0; /* Lighter text color for better contrast */
+            font-family: 'Arial', sans-serif; /* Improved typography */
+            margin-top: 50px; /* Adjusted top margin */
+        }
+        .details-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Add some space above the button container */
+        }
+        .btn {
+            padding: 10px 20px; /* Larger hit area */
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Text color */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s ease; /* Smooth background transition */
+        }
+        .btn-primary { background-color: #007bff; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-primary:hover, .btn-secondary:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        .update-btn{ margin-left: 20px; /* Ensure consistent usage */ }
+
+        p {
+            width:inherit; /* width: 100px; */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        hr{
+            border: none;
+            height: 2px;
+            background-color: #e3e3e3;
+            width: 90%;
+            margin: 20px 0;
+        }
+   </style>
+    <div class="container">
+        <h2>{{ todo.title }}</h2><hr> <!-- Lighter HR line -->
+        <p class="description"><strong>Description:</strong><br> {{ todo.description }}</p><hr>
+        <p><strong>Completed:</strong> {{ todo.completed|yesno:"Yes,No" }}</p><hr>
+        <p><strong>Created At:</strong> {{ todo.created_at|date:"Y-m-d H:i" }}</p>
+
+    </div>
+    <div class="details-container">
+        <a href="{% url 'update-todo' todo.id %}" class="btn btn-primary">update</a>
+        <a href="{% url 'todo-list' %}" class="btn btn-secondary update-btn">back</a>
+    </div>
+{% endblock %}
