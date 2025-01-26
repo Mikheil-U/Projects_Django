@@ -58,6 +58,13 @@ python manage.py runserver
 * ecommerce/shopping_cart/: Manages the shopping cart operations, including adding, updating, and deleting items.
 * ecommerce/store/: Handles product browsing, category filtering, and displaying product details.
 
+![image](https://github.com/user-attachments/assets/5dbde05c-9759-4811-882f-eecadb75ace2)
+![image](https://github.com/user-attachments/assets/9a55e3d9-2fcc-49bb-95fb-934d60688c0d)
+![image](https://github.com/user-attachments/assets/88d19629-fd7f-4570-bac3-74eb6b9a666d)
+![image](https://github.com/user-attachments/assets/280cff38-a251-4719-a8e8-f8543769c83c)
+
+
+
 
 
 
