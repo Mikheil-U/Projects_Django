@@ -6,7 +6,7 @@ This is a feature-rich e-commerce website built using Django. The platform allow
 
 ![image](https://github.com/user-attachments/assets/d3c0a363-5791-4b89-8d4e-f514089ebfaf)
 
-## [Django Blog Website: ] (https://github.com/Mikheil-U/Projects_Django/tree/master/mysite)
+## [Django Blog Website:](https://github.com/Mikheil-U/Projects_Django/tree/master/mysite)
 ### Overview
 
 This is a Django-powered blog website where users with admin privileges can create, update, and delete posts. The site also supports user comments, which can be reviewed, approved, or removed by admins.
