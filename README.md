@@ -11,3 +11,11 @@ This is a feature-rich e-commerce website built using Django. The platform allow
 
 This is a Django-powered blog website where users with admin privileges can create, update, and delete posts. The site also supports user comments, which can be reviewed, approved, or removed by admins.
 ![image](https://github.com/user-attachments/assets/e211f75c-5c51-43cd-b2b6-a32201984913)
+
+
+## [Django Favourite Movies Playlist](https://github.com/Mikheil-U/Projects_Django/tree/master/favourite_movies)
+### Overview
+This is a Django web application that allows users to register, log in, create movie playlists, and manage their movie collections. Each user can create multiple playlists, and each playlist can contain multiple movies. Users can perform CRUD operations on both playlists and movies.
+
+![image](https://github.com/user-attachments/assets/50f297e9-71e6-4d2c-82d6-7b8efef29c7e)
+
