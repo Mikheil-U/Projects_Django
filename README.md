@@ -4,7 +4,8 @@
 
 This is a feature-rich e-commerce website built using Django. The platform allows users to browse products, add them to a shopping cart, and complete purchases. It also supports user registration, authentication, email verification, and order tracking. The admin panel is used for managing products, categories, and orders. The website is designed to ensure an efficient and secure shopping experience.
 
-![image](https://github.com/user-attachments/assets/d3c0a363-5791-4b89-8d4e-f514089ebfaf)
+![image](https://github.com/user-attachments/assets/4bc81e66-b0a1-45b3-9ace-8142eb8115c5)
+
 
 ## [Django Blog Website:](https://github.com/Mikheil-U/Projects_Django/tree/master/mysite)
 ### Overview
