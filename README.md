@@ -20,3 +20,8 @@ This is a Django web application that allows users to register, log in, create m
 
 ![image](https://github.com/user-attachments/assets/50f297e9-71e6-4d2c-82d6-7b8efef29c7e)
 
+## [Django CRM](https://github.com/Mikheil-U/Projects_Django/tree/master/crm)
+### Overview
+This is a simple Customer Relationship Management (CRM) web application built with Django. The application allows users to register, log in, and manage records of people. Users can create, view, update, and delete records, and the application is designed to ensure that each user's data is private and secure.
+![image](https://github.com/user-attachments/assets/22117448-490f-4390-aa7a-2f3011faf254)
+
