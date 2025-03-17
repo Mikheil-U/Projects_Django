@@ -34,7 +34,7 @@ ul {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .article-title {
@@ -82,4 +82,21 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.alert-success {
+  background-color: #d4edda; /* Light green background */
+  color: #155724; /* Dark green text */
+  border: 1px solid #c3e6cb; /* Green border */
+  margin-top: 50px;
+
+}
+
+.alert {
+  padding: 15px; /* Increase padding for better visibility */
+  margin-bottom: 20px; /* Add some space below the alert */
+  border-radius: 5px; /* Slightly round the corners */
+  font-size: 16px; /* Increase font size */
+  text-align: center; /* Center the text */
+  margin-top: 70px;
 }
