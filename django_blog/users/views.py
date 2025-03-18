@@ -21,3 +21,9 @@ def register(request):
 def user_logout(request):
     auth.logout(request)
     return render(request, 'users/logout.html')
+
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+
