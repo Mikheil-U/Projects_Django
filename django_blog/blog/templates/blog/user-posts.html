@@ -38,5 +38,6 @@
         {% endif %}
 
     {% endif %}
+    <h1 >Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 
 {% endblock %}
